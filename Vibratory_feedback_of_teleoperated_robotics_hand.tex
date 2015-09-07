@@ -382,15 +382,11 @@
 
 \markboth{September~2015}{}
 
-
-
-
-
 \IEEEtitleabstractindextext{
 
 \begin{abstract}
 
-
+% Qui bisogna inserire l'abstract
 
 \end{abstract}
 
@@ -406,51 +402,16 @@ LeapMotion, Robotics hand, vibratory feedback
 
 \IEEEdisplaynontitleabstractindextext
 
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
 
-\IEEEraisesectionheading{\section{Introduction}\label{sec:introduction}}
-
-\IEEEPARstart
-{H}{aptic} feedback is an essential component in the robotic master systems because it allows to the user to perceive the interaction of the slave with the surrounding environment. 
-In particular haptic feedback can be divided in kinesthetic and cutaneous feedback. This two types of stimuli are very different from each other, kinesthetic feedback acts on muscles, joints and tendons, instead cutaneous feedback acts on the skin.
-Cutaneous feedback has been a great source of interest in the last years for the researchers that looking for a valid alternative to force feedback, a type of kinesthetic feedback used in a lot of robotics solutions. Unfortunately in many areas this kind of stimuli is not applicable because it is a source of instability for the system. For example in the commercial solutions of teleoperated surgical robots is not possible to use a force feedback because a little error could be very dangerous for the patient.
-
-% Cuteneous feedback in general
-In \cite{pacchierotti2012two} the authors built a system that provide the sense of weight on the finger. They used a servo motor that pulls three wires with the purpose to provide a compression of the finger, in this way they reproduced the contact of the slave system tools with the environment.
+\IEEEraisesectionheading{
+	\section{Introduction}
+	\label{sec:introduction}
+}
+\input{introduction}
 
 
-% Vibratory feedback
-More recently the researchers were focused on the vibratory feedback. This kind of stimuli is used in \cite{pacchierotti2014teleoperation} combined with kinesthetic feedback in teleoperation of steerable flexible needle to provide different type of feedback for different type of interaction.
-This system is very helpful for the clinician and it greatly reduces the error.
-
-% Combination of feedbacks with the vibratory one
-In \cite{pacchierotti2015cutaneous} vibratory feedback is used for palpation in robotic surgery. A BioTac tactile sensor is mounted on a Da Vinci robot and on the master controller they built a custom 3-DoF cutaneous feedBack device. 
-
-
-%\IEEEPARstart{F}{orce} 
-%feedback is a type of kinesthetic feedback and it is used in a lot of robotics solutions but in many areas is not applicable because it is a source of instability for the system.
-%For example in the teleoperated surgical robots is not possible to use a force feedback because a little error could be very dangerous for the patient.
-%A valid alternative to force feedback is vibration feedback. 
-%Pacchierotti et al. worked in this direction, they built a master console that can be used in needle insertion teleoperation \cite{pacchierotti2014teleoperation}, in their experiments they compared visual and vibratory feedback, and the results are very interesting, the teleoperation is more precise with vibratory feedback than with the visual one.
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width = 0.9\columnwidth]{img/img1.eps}
-  \caption{Simulation results for the network.}
-  % \label{fig_trajectory}
-\end{figure}
-
-
-
+\input{references}
 
 %\begin{enumerate}
 %\item item 1 $x=\frac{\pi}{\alpha^{10}_{15}}$
@@ -492,12 +453,7 @@ In \cite{pacchierotti2015cutaneous} vibratory feedback is used for palpation in 
 %\bibliographystyle{IEEEtran}
 % argument is your BibTeX string definitions and bibliography database(s)
 
-\bibliographystyle{IEEEtran}
-\bibliography{
-	pacchierotti2012two
-	, pacchierotti2014teleoperation
-	, pacchierotti2015cutaneous
-}
+
 	
 % 1 - pacchierotti2012two
 % 2 - pacchierotti2014teleoperation
