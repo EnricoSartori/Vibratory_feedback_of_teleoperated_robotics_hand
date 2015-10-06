@@ -32,13 +32,14 @@ The master has a little harder structure, it's mainly composed by a Leap Motion 
 \textbf{\textit{Leap motion}} is an input device that allow to track the hand and fingers movements, is composed by two infrared (IR) cameras and three infrared leds, with this components it can calculate the distance of every point in his field of vision, from this map it can say if and where the user hands are. 
 In \cite{weichert2013analysis} is presented a study of the precision and the stability of leap motion. For the purpose of this experiments the tracking provided by this device is enough accurate.
 
-Instead the "glove" is homemade, it is composed by some \textbf{\textit{vibrating mini-motors}} fixed to the user hand with velcro straps and controlled by an Arduino Mega.
+Instead the "glove" is homemade, it is composed by some \textbf{\textit{vibrating mini-motors}} fixed to the user hand and controlled by an Arduino Mega.
 
 \textbf{\textit{Arduino}} is an open-source electronic prototyping platform that allow to create interactive electronic objects. It can be programmed through the Arduino IDE, that includes a GUI to write sketch (script in Arduino slang), the code compiler and a "programmer" to upload the compiled code on the device. Arduino is connected to the rest of the system through a serial cable.
 
 Each mini-motor is connected to the Arduino through the PWM (Pulse Width Modulation), a signal switched between ON-OFF (5-0V), that returns a value between 0-255 according to the duty-cycle.
 The mini-motors need of a simple electronic circuit to be controlled by a PWM signal (Figure \ref{fig:breadboard}).
 
+The minimum number of motors to provide a significative feedback of the robotics hand measures is six, two for everyone of the three fingers. Everyone is wired to the same breadboard and fixed to the hand by a velcro strap.
 
 
 \begin{figure}
@@ -56,3 +57,30 @@ The mini-motors need of a simple electronic circuit to be controlled by a PWM si
 \end{figure}
 
 \subsection{Software architecture}
+
+The entire system is handled by \textbf{\textit{ROS (Robot Operating System)}}, a large collection of software frameworks that mainly allows to the system devices to communicate each other. This platform is  characterised by few concepts, the two most important are node and topic. 
+
+A node is a process that performs computation, many nodes communicate each other using topics. This software design method provides several benefits, 
+The developer designs the software in a easier in comparison to monolithic systems, every crash is isolated to the interested node, node implementation is hidden because each node exposes only a minimal API to the others.
+
+The ROS structure of the system is shown by the block diagram in figure \ref{fig:rosstructure} where the ovals are the nodes and the rectangles are the topics. 
+The graph represents perfectly the system flow from the leap motion camera to the arduino that handles the vibratory glove.
+
+\par
+
+\textit{leap\textunderscore motion\textunderscore skeleton} is the node of rosleapmotion package that publish the a message with the information of every hand segment perceived by the leap motion, this messages contain a vector with the translation and a quaternion with the orientation.
+
+\textit{tf\textunderscore to\textunderscore CommandHand} is a node with the purpose to filters the tf messages discarding those are not needed and convert the orientation matrix from quaternion to axis-angle notation. With this two simple operation we can isolate the rotation angle of the interesting finger phalanges. Then these angles are published on the reflex\textunderscore commander topic.
+
+\textit{reflex\textunderscore move}
+
+
+
+
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.3\textwidth]{img/ROS_structure.eps}
+  \caption{ROS architecture}
+  \label{fig:rosstructure}
+\end{figure}
